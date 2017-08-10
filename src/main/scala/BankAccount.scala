@@ -33,14 +33,16 @@ class BankAccount extends Actor {
   }
 
   def listTransactions:String = {
-    var returnString = "      Date           Type       Amount\n"
-    returnString +=    "----------------    ------    ----------\n"
+    var returnString = "      Date           Type       Amount        Balance\n"
+    returnString +=    "----------------    ------    ----------    -----------\n"
     val dateFormat = new SimpleDateFormat("hh:mm MM-dd-yyyy")
+    var runningBalance = 0.0
 
     for (transaction <- transactions){
       val date = dateFormat.format(transaction.date)
       val tType = if(transaction.amount > 0) "D" else "W"
-      returnString += s"$date      $tType      " + transaction.amount +"\n"
+      runningBalance += transaction.amount
+      returnString += s"$date      $tType         " + transaction.amount + s"       $runningBalance\n"
 
     }
 
