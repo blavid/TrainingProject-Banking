@@ -16,20 +16,21 @@ case class ListTransactions()
 class BankAccount extends Actor {
 
   var balance = 0.0
-  var transactions = List[Transaction]()
+//  var transactions = List[Transaction]()
+  var transactions = Array[Transaction]()
 
   class Transaction(var amount: Double, var date: Date)
 
   def deposit (amount: Double) = {
     balance += amount
     val transaction = new Transaction(amount, Calendar.getInstance().getTime())
-    transactions = transaction::transactions
+    transactions = transactions :+ transaction
   }
 
   def withdraw (amount: Double) = {
     balance -= amount
     val transaction = new Transaction(-amount, Calendar.getInstance().getTime())
-    transactions = transaction::transactions
+    transactions = transactions :+ transaction
   }
 
   def listTransactions:String = {
