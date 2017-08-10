@@ -13,6 +13,7 @@ class BankAccount extends Actor {
   override def receive: Receive = {
     case "Deposit" => println("deposited")
     case "Withdrawal" => println("withdrawn")
+    case none => println("unknown service request")
   }
 
 }
