@@ -52,15 +52,18 @@ class BankAccount extends Actor {
     case Deposit(amount) => {
       deposit(amount)
       println(s"deposited $amount")
+      sender ! 1
     }
 
     case Withdraw(amount) => {
       withdraw(amount)
       println(s"withdrawn $amount")
+      sender ! 2
     }
 
     case BalanceInquiry =>{
       println(s"Balance: $balance")
+      sender ! 3
     }
 
     case ListTransactions =>{

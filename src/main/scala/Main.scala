@@ -17,14 +17,17 @@ object Main extends App {
   val timeout = Duration.create(5, "seconds")
 
   var future = accountActor.ask(Deposit(5000))(timeout)
-  var res = Await.result(future, timeout).asInstanceOf[String]
+  var res = Await.result(future, timeout)
 
-  future = accountActor.ask(Withdraw(5000))(timeout)
-  res = Await.result(future, timeout).asInstanceOf[String]
+  future = accountActor.ask(Withdraw(3000))(timeout)
+  res = Await.result(future, timeout)
+
+  future = accountActor.ask(Withdraw(300))(timeout)
+  res = Await.result(future, timeout)
 
   future = accountActor.ask(BalanceInquiry)(timeout)
-  res = Await.result(future, timeout).asInstanceOf[String]
+ res = Await.result(future, timeout)
 
-  //future = accountActor ? ListTransactions (timeout)
+  future = accountActor.ask(ListTransactions) (timeout)
 }
 
