@@ -1,0 +1,15 @@
+*.iml
+### Scala template
+*.class
+*.log
+dist/
+acs/origin/
+
+dist/*
+target/
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+.idea
+
+
